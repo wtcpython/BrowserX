@@ -1,0 +1,80 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:BrowserX.Controls">
+
+    <Style TargetType="controls:ToolButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ToolButton">
+                    <Button
+                        ToolTipService.ToolTip="{TemplateBinding TipText}"
+                        Style="{StaticResource AlternateCloseButtonStyle}">
+                        <FontIcon Glyph="{TemplateBinding IconGlyph}" />
+
+                        <Button.Flyout>
+                            <Flyout x:Name="ButtonFlyout">
+                                <StackPanel Width="400" Spacing="5" Padding="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock
+                                            Margin="5,0,5,0"
+                                            Text="{TemplateBinding Title}" FontWeight="Bold" FontSize="16"
+                                            VerticalAlignment="Center"/>
+
+                                        <Button
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            Style="{StaticResource AlternateCloseButtonStyle}">
+                                            <FontIcon Glyph="&#xe840;" />
+                                        </Button>
+                                    </Grid>
+
+                                    <TextBox Name="SearchTextBox" PlaceholderText="{TemplateBinding PlaceholderText}"/>
+
+                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:IconButton" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:IconButton">
+                    <Button
+                        x:Name="IconButton"
+                        ToolTipService.ToolTip="{TemplateBinding TipText}"
+                        Style="{StaticResource AlternateCloseButtonStyle}"
+                        Flyout="{TemplateBinding Flyout}">
+                        <FontIcon Glyph="{TemplateBinding IconGlyph}" />
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="{TemplateBinding Key}" Modifiers="{TemplateBinding Modifiers}" />
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="controls:WebSearch">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:WebSearch">
+                    <AutoSuggestBox
+                        x:Name="AutoSuggestBox"
+                        FontSize="{TemplateBinding FontSize}"
+                        PlaceholderText="搜索网页" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BrowserX (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BrowserX (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

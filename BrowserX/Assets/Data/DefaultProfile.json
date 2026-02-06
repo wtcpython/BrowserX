@@ -1,0 +1,21 @@
+{
+    "Appearance": "Default",
+    "AskDownloadBehavior": false,
+    "BackgroundEffect": "Mica",
+    "MenuStatus": "Always",
+    "SearchEngine": "Bing",
+    "BackgroundBehavior": 0,
+    "BackgroundLocation": "",
+    "ShowFlyoutWhenStartDownloading": true,
+    "ShowSuggestUri": true,
+    "SpecificUri": "",
+    "StartBehavior": 0,
+    "DisableGpu": false,
+    "DisableBackgroundTimerThrottling": false,
+    "ToolBar": {
+        "HomeButton": false,
+        "ForwardButton": true,
+        "HistoryButton": true,
+        "DownloadButton": true
+    }
+}

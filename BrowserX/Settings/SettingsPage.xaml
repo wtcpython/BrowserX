@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BrowserX.Settings.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrowserX.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d">
+    <NavigationView
+        Name="Navigation"
+        IsSettingsVisible="False"
+        x:Uid="Navigation_Settings"
+        IsTabStop="False"
+        IsBackButtonVisible="Collapsed"
+        SelectionChanged="NavigationView_SelectionChanged">
+
+        <!-- Define the menu items in the NavigationView -->
+        <NavigationView.MenuItems>
+            <NavigationViewItem
+                x:Uid="Privacy"
+                Tag="Privacy.PrivacyMainPage"
+                Icon="{ui:FontIcon Glyph=&#xE72E;}"/>
+            <NavigationViewItem
+                x:Uid="Appearance"
+                Tag="Appearance.AppearanceMainPage"
+                Icon="{ui:FontIcon Glyph=&#xE790;}"/>
+            <NavigationViewItem
+                x:Uid="Start"
+                Tag="StartItem"
+                Icon="{ui:FontIcon Glyph=&#xEc6c;}"/>
+            <NavigationViewItem
+                x:Uid="Navigation_Downloads"
+                Tag="DownloadItem"
+                Icon="{ui:FontIcon Glyph=&#xe896;}"/>
+            <NavigationViewItem
+                x:Uid="System"
+                Tag="System.SystemMainPage"
+                Icon="{ui:FontIcon Glyph=&#xE7F8;}"/>
+            <NavigationViewItem
+                x:Uid="ResetSettings"
+                Tag="ResetItem"
+                Icon="{ui:FontIcon Glyph=&#xE777;}"/>
+            <NavigationViewItem
+                x:Uid="About"
+                Tag="About"
+                Icon="{ui:FontIcon Glyph=&#xe713;}"/>
+        </NavigationView.MenuItems>
+
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem
+                Content="新增内容"
+                Icon="{ui:FontIcon Glyph=&#xe789;}"
+                Tapped="Release_Tapped"/>
+        </NavigationView.FooterMenuItems>
+
+        <NavigationView.Header>
+            <BreadcrumbBar
+                x:Name="BreadcrumbBar"
+                ItemClicked="BreadcrumbBar_ItemClicked">
+                <BreadcrumbBar.ItemTemplate>
+                    <DataTemplate x:DataType="local:NavigationItem">
+                        <BreadcrumbBarItem Content="{Binding}">
+                            <BreadcrumbBarItem.ContentTemplate>
+                                <DataTemplate x:DataType="local:NavigationItem">
+                                    <TextBlock
+                                        Text="{x:Bind Header}"
+                                        Style="{StaticResource TitleTextBlockStyle}"/>
+                                </DataTemplate>
+                            </BreadcrumbBarItem.ContentTemplate>
+                        </BreadcrumbBarItem>
+                    </DataTemplate>
+                </BreadcrumbBar.ItemTemplate>
+            </BreadcrumbBar>
+        </NavigationView.Header>
+
+        <Frame x:Name="ContentFrame"/>
+    </NavigationView>
+</Page>

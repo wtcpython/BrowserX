@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="BrowserX.Controls.BrowserMenuItems"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrowserX.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d">
+
+    <local:IconButton
+        x:Uid="SettingsAndMore"
+        IconGlyph="&#xe712;"
+        Key="F" Modifiers="Menu">
+        <local:IconButton.Flyout>
+            <MenuFlyout Opening="MenuFlyout_Opening" Placement="BottomEdgeAlignedRight">
+                <MenuFlyoutItem
+                    x:Uid="NewTab"
+                    Click="TryCreateNewTab"
+                    Icon="{ui:FontIcon Glyph=&#xec6c;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="T" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="NewWindow"
+                    Click="TryCreateNewWindow"
+                    Icon="{ui:FontIcon Glyph=&#xe737;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="N" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem>
+                    <MenuFlyoutItem.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock x:Uid="Zoom" Margin="48,0,0,0" VerticalAlignment="Center"/>
+
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                                    <local:IconButton
+                                        x:Uid="ZoomOut"
+                                        IconGlyph="&#xe949;"
+                                        Key="Subtract" Modifiers="Control" />
+
+                                    <TextBlock x:Name="zoomBlock" Text="100%" VerticalAlignment="Center"/>
+
+                                    <local:IconButton
+                                        x:Uid="ZoomIn"
+                                        IconGlyph="&#xe948;"
+                                        Key="Add" Modifiers="Control" />
+
+                                    <Border Background="LightGray" Width="1" Margin="0,5,0,5"/>
+
+                                    <local:IconButton
+                                        x:Uid="FullScreen"
+                                        IconGlyph="&#xe740;"
+                                        Key="F11" Modifiers="None" />
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </MenuFlyoutItem.Template>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem
+                    x:Uid="Favorites"
+                    Click="ShowFlyout"
+                    Icon="{ui:FontIcon Glyph=&#xe728;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="O" Modifiers="Control,Shift"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="History"
+                    Click="ShowFlyout"
+                    Icon="{ui:FontIcon Glyph=&#xe81c;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="H" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="Downloads"
+                    Click="ShowFlyout"
+                    Icon="{ui:FontIcon Glyph=&#xe896;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="J" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem
+                    x:Uid="Print"
+                    Click="ShowPrintUi"
+                    Icon="{ui:FontIcon Glyph=&#xe749;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="P" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="FindOnPage"
+                    Icon="{ui:FontIcon Glyph=&#xe71e;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="Settings"
+                    Click="TryOpenSettingPage"
+                    Icon="{ui:FontIcon Glyph=&#xe713;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem x:Uid="CloseBrowser" Click="CloseApp"/>
+            </MenuFlyout>
+        </local:IconButton.Flyout>
+    </local:IconButton>
+</UserControl>

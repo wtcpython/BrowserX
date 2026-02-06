@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BrowserX.Pages.ReleaseNotesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrowserX.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
+    Loaded="Page_Loaded"
+    mc:Ignorable="d">
+
+    <!--  Main layout container  -->
+    <Grid MaxWidth="1000">
+        <ScrollViewer Padding="0,0,0,0"
+                VerticalScrollBarVisibility="Auto">
+            <Grid Margin="0,0,0,24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1"
+                        Margin="24,16,24,24">
+                    <ProgressRing
+                        x:Name="LoadingProgressRing"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsIndeterminate="True"
+                        Visibility="Visible"/>
+                    <wct:MarkdownTextBlock
+                        x:Name="ReleaseNotesMarkdown"
+                        UseAutoLinks="True"
+                        UseEmphasisExtras="True"
+                        UseListExtras="True"
+                        UsePipeTables="True"
+                        UseTaskLists="True"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

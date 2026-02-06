@@ -1,0 +1,8 @@
+SetWindowSubclass
+SendMessage
+DefSubclassProc
+ScreenToClient
+GetDpiForWindow
+
+WM_SYSCOMMAND
+WM_NCRBUTTONUP

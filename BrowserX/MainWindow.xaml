@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="BrowserX.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrowserX"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d"
+    Title="BrowserX">
+
+    <TabView
+        x:Name="tabView"
+        TabCloseRequested="CloseTab"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch"
+        AddTabButtonClick="TabViewAddTabButtonClick"
+        PointerPressed="TabViewPointerPressed">
+
+        <TabView.TabStripFooter>
+            <Grid
+                Background="Transparent"
+                Name="AppTitleBar"
+                Padding="0,0,200,0"/>
+        </TabView.TabStripFooter>
+
+        <TabView.Resources>
+            <MenuFlyout x:Name="TabFlyout">
+                <MenuFlyoutItem
+                    x:Uid="NewTabRight"
+                    Click="CreateNewTabOnRight"
+                    Icon="{ui:FontIcon Glyph=&#xec6c;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem
+                    x:Uid="Refresh"
+                    Click="RefreshTab"
+                    Icon="{ui:FontIcon Glyph=&#xe72c;}">
+
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="R" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="DuplicateTab"
+                    Click="CopyTab"
+                    Icon="{ui:FontIcon Glyph=&#xe8c8;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="K" Modifiers="Control,Shift"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="MoveTabToNewWindow"
+                    Click="MoveTabToNewWindow"
+                    Icon="{ui:FontIcon Glyph=&#xe737;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="PinTab"
+                    Click="PinTab"
+                    Icon="{ui:FontIcon Glyph=&#xe718;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    x:Uid="MuteTab"
+                    Name="MuteButton"
+                    Click="MuteTab"
+                    Icon="{ui:FontIcon Glyph=&#xe74f;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="M" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem
+                    x:Uid="CloseTab"
+                    Click="CloseTab"
+                    Icon="{ui:FontIcon Glyph=&#xe711;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="W" Modifiers="Control"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem x:Uid="CloseOtherTabs" Click="CloseOtherTab"/>
+                <MenuFlyoutItem x:Uid="CloseTabsRight" Click="CloseRightTab"/>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem x:Uid="ReopenClosedTab" Click="OpenClosedTab">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="T" Modifiers="Control,Shift"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem x:Uid="AddAllTabsToFavorites">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="D" Modifiers="Control,Shift"/>
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+
+            <MenuFlyout
+                x:Name="TitlebarMenuFlyout"
+                Placement="BottomEdgeAlignedLeft">
+
+                <MenuFlyoutItem
+                    Click="OnRestoreClicked"
+                    IsEnabled="{x:Bind IsWindowMaximized, Mode=OneWay}"
+                    Text="还原"
+                    Icon="{ui:FontIcon Glyph=&#xE923;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    Click="OnMoveClicked"
+                    IsEnabled="{x:Bind IsWindowMaximized.Equals(x:False), Mode=OneWay}"
+                    Tag="{x:Bind TitlebarMenuFlyout}"
+                    Text="移动" />
+
+                <MenuFlyoutItem
+                    Click="OnSizeClicked"
+                    IsEnabled="{x:Bind IsWindowMaximized.Equals(x:False), Mode=OneWay}"
+                    Tag="{x:Bind TitlebarMenuFlyout}"
+                    Text="大小" />
+
+                <MenuFlyoutItem
+                    Click="OnMinimizeClicked"
+                    Text="最小化"
+                    Icon="{ui:FontIcon Glyph=&#xE921;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    Click="OnMaximizeClicked"
+                    IsEnabled="{x:Bind IsWindowMaximized.Equals(x:False), Mode=OneWay}"
+                    Text="最大化"
+                    Icon="{ui:FontIcon Glyph=&#xE922;}">
+                </MenuFlyoutItem>
+
+                <MenuFlyoutSeparator />
+
+                <MenuFlyoutItem
+                    Click="CreateNewTabOnRight"
+                    Text="新建标签页">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="T" Modifiers="Control" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    Click="OpenClosedTab"
+                    Text="重新打开关闭的标签页">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="T" Modifiers="Control,Shift" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    Text="将打开的页面添加到收藏夹">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="D" Modifiers="Control,Shift" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+
+                <MenuFlyoutItem
+                    Click="OnCloseClicked"
+                    Text="关闭"
+                    Icon="{ui:FontIcon Glyph=&#xE8BB;}">
+                    <MenuFlyoutItem.KeyboardAccelerators>
+                        <KeyboardAccelerator Key="F4" Modifiers="Menu" />
+                    </MenuFlyoutItem.KeyboardAccelerators>
+                </MenuFlyoutItem>
+            </MenuFlyout>
+        </TabView.Resources>
+    </TabView>
+</Window>

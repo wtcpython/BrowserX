@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="BrowserX.Settings.ResetItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrowserX.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:ui="using:CommunityToolkit.WinUI"
+    mc:Ignorable="d">
+    <ScrollView>
+        <StackPanel
+            Spacing="{StaticResource NavigationViewFrameSpacing}"
+            Margin="{StaticResource NavigationViewFrameMargin}">
+            <controls:SettingsCard
+                Header="将设置还原为默认值"
+                Click="ResetUserSettings"
+                IsClickEnabled="True"
+                ActionIcon="{ui:FontIcon Glyph=&#xE8A7;}">
+            </controls:SettingsCard>
+
+            <ContentDialog Name="ResetDialog"
+                           Title="重置设置"
+                           CloseButtonText="取消"
+                           PrimaryButtonText="重置">
+                <TextBlock TextWrapping="Wrap">此操作将重置启动页面、新选项卡页、搜索引擎和固定的选项卡。它还将清除 Cookie 等临时数据。收藏夹、历史记录和保存的密码不会被清除。</TextBlock>
+            </ContentDialog>
+        </StackPanel>
+    </ScrollView>
+</Page>
